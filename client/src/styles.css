@@ -136,3 +136,16 @@ tfoot {
 .join-create-container input[type="text"]::placeholder {
   color: rgba(255,255,255,0.6);
 }
+
+.join-create-container input[type="text"] {
+  background-color: #ffffff;      /* solid white box */
+  border: 1px solid #ccc;         /* light grey border */
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  color: #333333;                 /* dark grey for user‐typed text */
+}
+
+.join-create-container input[type="text"]::placeholder {
+  color: rgba(51, 51, 51, 0.5);    /* 50% opaque grey placeholder */
+}
