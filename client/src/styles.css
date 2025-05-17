@@ -151,5 +151,5 @@ tfoot {
 }
 
 .join-create-container h2 {
-  color: #2f6e43;
+  color: #2f6e43; /* matches button background */
 }
