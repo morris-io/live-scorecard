@@ -70,17 +70,16 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
           backgroundColor: "rgba(255, 255, 255, 0.85)",
           padding: 20,
           borderRadius: 12,
-          width: 260 // <-- narrowed card width
+          width: 260
         }}
       >
         <h2 style={{ margin: 0, color: "#2f6e43" }}>Enter Your Name</h2>
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            alignItems: "center",
             gap: "10px",
-            marginTop: 16,
-            flexWrap: "wrap"
+            marginTop: 16
           }}
         >
           <input
@@ -89,27 +88,26 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={{
+              flex: 1,
               padding: 10,
               fontSize: 16,
               borderRadius: 6,
-              border: "1px solid #ccc",
-              width: "100%" // <-- fill the 260px card
+              border: "1px solid #ccc"
             }}
           />
           <button
             onClick={handleCreate}
             style={{
-              padding: "10px 16px",
+              padding: "10px",
               fontSize: 16,
               background: "#2f6e43",
               color: "white",
               border: "none",
               borderRadius: 8,
-              cursor: "pointer",
-              whiteSpace: "nowrap"
+              cursor: "pointer"
             }}
           >
-            Continue
+            &rarr;
           </button>
         </div>
       </div>
