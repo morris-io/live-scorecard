@@ -23,7 +23,6 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
           groupId: groupFromURL,
           userId: createdUser._id
         });
-
         setGroup(joinRes.data.group);
       }
     } catch (err) {
@@ -38,8 +37,8 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
         position: "fixed",
         top: 0,
         left: 0,
-        height: "100dvh",
         width: "100vw",
+        height: "100dvh",
         display: "flex",
         justifyContent: "center",
         alignItems: "flex-start",
@@ -47,7 +46,7 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
         zIndex: 0
       }}
     >
-      {/* Bottom-right corner label */}
+      {/* Bottom‐right credit */}
       <div
         style={{
           position: "fixed",
@@ -64,15 +63,17 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
         Developed by Michael Morris
       </div>
 
+      {/* Card */}
       <div
         style={{
           textAlign: "center",
           backgroundColor: "rgba(255, 255, 255, 0.85)",
           padding: 20,
-          borderRadius: 12
+          borderRadius: 12,
+          width: 260 // <-- narrowed card width
         }}
       >
-        <h2>Enter Your Name</h2>
+        <h2 style={{ margin: 0, color: "#2f6e43" }}>Enter Your Name</h2>
         <div
           style={{
             display: "flex",
@@ -92,8 +93,7 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
               fontSize: 16,
               borderRadius: 6,
               border: "1px solid #ccc",
-              width: "220px",
-              maxWidth: "80vw"
+              width: "100%" // <-- fill the 260px card
             }}
           />
           <button
