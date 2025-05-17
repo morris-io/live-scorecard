@@ -79,7 +79,7 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
             display: "flex",
             alignItems: "center",
             gap: "10px",
-            marginTop: 16
+            marginTop: 24  // increased spacing here
           }}
         >
           <input
