@@ -102,13 +102,13 @@ tfoot {
   letter-spacing: 0.5px;
 }
 
-/* scope everything in that container */
+/* scope it*/
 .join-create-container {
   /* makes all body‐text inside white by default */
   color: #fff;
 }
 
-/* specifically target headings */
+/* target headings */
 .join-create-container h2,
 .join-create-container h3 {
   color: #fff;
@@ -122,4 +122,17 @@ tfoot {
   color: rgba(255,255,255,0.6);  /* placeholder text */
 }
 
-/* buttons already have white text, so no need to touch those */
+/* white */
+
+.join-create-container input[type="text"] {
+  /* make the input blend with the green background */
+  background-color: transparent;  
+  border: 1px solid rgba(255,255,255,0.6);
+  /* keep your white text */
+  color: #fff;
+}
+
+/* soften the placeholder  */
+.join-create-container input[type="text"]::placeholder {
+  color: rgba(255,255,255,0.6);
+}
