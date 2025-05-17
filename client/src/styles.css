@@ -149,7 +149,3 @@ tfoot {
 .join-create-container input[type="text"]::placeholder {
   color: rgba(51, 51, 51, 0.5);    /* 50% opaque grey placeholder */
 }
-
-.join-create-container h2 {
-  color: #2f6e43; /* matches button background */
-}
