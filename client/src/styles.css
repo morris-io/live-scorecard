@@ -1,0 +1,103 @@
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f8f3;
+  color: #333;
+}
+
+/* ✅ Prevent iOS input zoom on tap by setting 16px minimum font size */
+input, textarea, select {
+  font-size: 16px;
+}
+
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #2f6e43;
+  text-align: center;
+}
+
+/* For centering the name input on the first page */
+.initial-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh; /* place it toward lower portion of screen */
+  gap: 16px;
+}
+
+button {
+  background: #2f6e43;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #255733;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* ✅ Only narrow the number inputs (used in scorecard) */
+input[type="number"] {
+  width: 50px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 6px;
+  text-align: center;
+}
+
+thead {
+  background: #e4efe8;
+}
+
+tfoot {
+  background: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Smaller width just for the name input on CreateUser page */
+.name-input {
+  width: 250px;
+}
+
+.fancy-heading {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
