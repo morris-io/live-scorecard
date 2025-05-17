@@ -101,3 +101,25 @@ tfoot {
   font-weight: 600;
   letter-spacing: 0.5px;
 }
+
+/* scope everything in that container */
+.join-create-container {
+  /* makes all body‐text inside white by default */
+  color: #fff;
+}
+
+/* specifically target headings */
+.join-create-container h2,
+.join-create-container h3 {
+  color: #fff;
+}
+
+/* inputs & placeholders */
+.join-create-container input {
+  color: #fff;                   /* user‐typed text */
+}
+.join-create-container input::placeholder {
+  color: rgba(255,255,255,0.6);  /* placeholder text */
+}
+
+/* buttons already have white text, so no need to touch those */

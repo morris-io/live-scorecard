@@ -92,7 +92,7 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
         >
           <input
             type="text"
-            placeholder="e.g., Mike"
+            placeholder="e.x., Mike"
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={{
