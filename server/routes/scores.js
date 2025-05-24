@@ -1,4 +1,3 @@
-// routes/scores.js
 const express   = require("express");
 const Scorecard = require("../models/Scorecard");
 const Group     = require("../models/Group");
@@ -7,10 +6,7 @@ const User      = require("../models/User");
 module.exports = (io) => {
   const router = express.Router();
 
-  // ----------------------------------
-  // POST /api/scores
-  // Create a new scorecard for a group
-  // ----------------------------------
+  // Create scorecard for a group
   router.post("/", async (req, res) => {
     try {
       const { groupId } = req.body;
@@ -21,19 +17,18 @@ module.exports = (io) => {
 
       console.log("📩 Creating scorecard for group:", groupId);
 
-      // Prevent duplicates
+      // No duplicates
       const existing = await Scorecard.findOne({ groupId });
       if (existing) {
         return res.status(409).json({ error: "Scorecard already exists for this group" });
       }
 
-      // Load group to determine gameType and users/teams
+      // Load group
       const group = await Group.findById(groupId).populate("users");
       if (!group) {
         return res.status(404).json({ error: "Group not found" });
       }
 
-      // Build scores map: per-team for bestball, per-user for standard
       const scores = {};
       if (group.gameType === "bestball") {
         const teams = [...new Set(group.users.map((u) => u.team).filter(Boolean))];
@@ -57,10 +52,7 @@ module.exports = (io) => {
     }
   });
 
-  // ----------------------------------
-  // PATCH /api/scores/update
   // Update a specific user's or team's hole score
-  // ----------------------------------
   router.patch("/update", async (req, res) => {
     try {
       const { groupId, userId, holeIndex, strokes } = req.body;
@@ -74,7 +66,6 @@ module.exports = (io) => {
         return res.status(404).json({ error: "Scorecard not found" });
       }
 
-      // Determine key: team name for bestball, userId string for standard
       const group = await Group.findById(groupId);
       let key;
       if (group?.gameType === "bestball") {
@@ -85,12 +76,11 @@ module.exports = (io) => {
         key = userId.toString();
       }
 
-      // Initialize array if missing
       if (!scorecard.scores.has(key)) {
         scorecard.scores.set(key, new Array(18).fill(0));
       }
 
-      // Update the strokes
+      // Update the score
       const arr = scorecard.scores.get(key);
       arr[holeIndex] = strokes;
       scorecard.scores.set(key, arr);
@@ -98,7 +88,6 @@ module.exports = (io) => {
       scorecard.updatedAt = new Date();
       await scorecard.save();
 
-      // Broadcast real-time update
       io.to(groupId).emit("scorecardUpdated", scorecard);
 
       res.status(200).json({ message: "Score updated", scores: scorecard.scores });
@@ -108,10 +97,7 @@ module.exports = (io) => {
     }
   });
 
-  // ----------------------------------
-  // GET /api/scores/:groupId
   // Fetch the scorecard for a group
-  // ----------------------------------
   router.get("/:groupId", async (req, res) => {
     try {
       const { groupId } = req.params;

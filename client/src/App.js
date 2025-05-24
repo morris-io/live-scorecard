@@ -1,4 +1,3 @@
-// client/src/App.js
 import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -16,9 +15,6 @@ import Layout            from "./components/Format";
 const API_URL = "https://golf-scorecard-app-u07h.onrender.com";
 
 function App() {
-  /* -------------------------------------------------------------------- */
-  /*  State                                                                */
-  /* -------------------------------------------------------------------- */
   const [user,  setUser]  = useState(() => {
     const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : null;
@@ -31,9 +27,7 @@ function App() {
 
   const [scorecard, setScorecard] = useState(null);
 
-  /* -------------------------------------------------------------------- */
-  /*  Persist user / group to localStorage                                */
-  /* -------------------------------------------------------------------- */
+  /*  go to localStorage                                */
   useEffect(() => {
     if (user)  localStorage.setItem("user",  JSON.stringify(user));
   }, [user]);
@@ -42,9 +36,6 @@ function App() {
     if (group) localStorage.setItem("group", JSON.stringify(group));
   }, [group]);
 
-  /* -------------------------------------------------------------------- */
-  /*  Keep user.team in sync after group updates                          */
-  /* -------------------------------------------------------------------- */
   useEffect(() => {
     if (!group || !user) return;
 
@@ -57,13 +48,10 @@ function App() {
     }
   }, [group, user]);
 
-  /* -------------------------------------------------------------------- */
-  /*  Fetch / create scorecard when user + group are ready                */
-  /* -------------------------------------------------------------------- */
+  /* create scorecard when group is ready                */
   useEffect(() => {
     const fetchScorecard = async () => {
       if (!group || !user) return;
-      // ⬅️ in best‑ball, don’t fetch/create until this user has chosen a team
       if (group.gameType === "bestball" && !user.team) return;
 
       try {
@@ -72,7 +60,7 @@ function App() {
         if (res.ok) {
           setScorecard(await res.json());
         } else if (res.status === 404) {
-          // none yet – create a fresh one
+          // none yet – create one
           const createRes = await fetch(`${API_URL}/api/scores`, {
             method:  "POST",
             headers: { "Content-Type": "application/json" },
@@ -98,15 +86,11 @@ function App() {
     fetchScorecard();
   }, [group, user]);
 
-  /* -------------------------------------------------------------------- */
-  /*  Invite‑link support                                                 */
-  /* -------------------------------------------------------------------- */
+  /*  Invite */
   const params        = new URLSearchParams(window.location.search);
   const groupFromURL  = params.get("group");
 
-  /* -------------------------------------------------------------------- */
-  /*  Routing                                                             */
-  /* -------------------------------------------------------------------- */
+  /*  Routing */
   return (
     <Router>
       <Routes>
@@ -114,7 +98,7 @@ function App() {
           path="/"
           element={
             <Layout>
-              {/* 1️⃣  CREATE USER */}
+              {/* Create user */}
               {!user ? (
                 <CreateUser
                   setUser={setUser}
@@ -124,7 +108,7 @@ function App() {
                     setScorecard(null);
                   }}
                 />
-              ) : /* 2️⃣  CHOOSE / JOIN GROUP */ !group ? (
+              ) : /* join */ !group ? (
                 <JoinOrCreateGroup
                   user={user}
                   setGroup={(g) => {
@@ -132,30 +116,29 @@ function App() {
                     setScorecard(null);
                   }}
                 />
-              ) : /* 3️⃣  BEST BALL – CHOOSE TEAM */ group.gameType === "bestball" &&
+              ) : /* Best ball */ group.gameType === "bestball" &&
                 !user.team ? (
                 <SelectTeam
                   user={user}
                   group={group}
                   setGroup={(updatedGroup) => {
                     setGroup(updatedGroup);
-                    setScorecard(null);       // ⬅️ clear any old/empty scorecard
+                    setScorecard(null);
                   }}
                 />
-              ) : /* 4️⃣  SCORECARD */ (
+              ) : /* Scorecard */ (
                 <Scorecard
                   user={user}
                   group={group}
                   scorecard={scorecard}
                   setScorecard={setScorecard}
-                  setGroup={setGroup}     // ← subscribe to group updates
+                  setGroup={setGroup}
                 />
               )}
             </Layout>
           }
         />
 
-        {/* Public / read‑only scorecard share link */}
         <Route path="/scorecard/:groupId" element={<ViewScorecard />} />
       </Routes>
     </Router>

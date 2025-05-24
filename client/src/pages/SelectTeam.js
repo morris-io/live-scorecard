@@ -1,4 +1,3 @@
-// client/src/pages/SelectTeam.js
 import { useMemo } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +7,6 @@ const API_URL = "https://golf-scorecard-app-u07h.onrender.com";
 export default function SelectTeam({ user, group, setGroup }) {
   const navigate = useNavigate();
 
-  /* -------------------------------------------
-     Build a de‑duplicated list of existing teams
-  -------------------------------------------- */
   const existingTeams = useMemo(() => {
     if (!group?.users) return [];
 
@@ -23,9 +19,7 @@ export default function SelectTeam({ user, group, setGroup }) {
     ];
   }, [group]);
 
-  /* -------------------------------------------
-     Join or create a team, then return to / (scorecard)
-  -------------------------------------------- */
+  /* Join or create a team, then to scorecard */
   const joinTeam = async (teamName) => {
     try {
       const res = await axios.post(`${API_URL}/api/groups/join-team`, {
@@ -51,9 +45,7 @@ export default function SelectTeam({ user, group, setGroup }) {
     }
   };
 
-  /* -------------------------------------------
-     Render
-  -------------------------------------------- */
+  /* Render */
   return (
     <div
       style={{

@@ -11,7 +11,7 @@ const socket = io(API_URL);
 export default function Scorecard({ user, group, scorecard, setScorecard, setGroup }) {
   const [userNames, setUserNames] = useState({});
 
-  // Join Socket.io room and listen for updates
+  // Join Socket.io 
   useEffect(() => {
     const join = () => socket.emit("joinGroup", group._id);
     join();
@@ -25,7 +25,7 @@ export default function Scorecard({ user, group, scorecard, setScorecard, setGro
     };
   }, [group._id, setScorecard, setGroup]);
 
-  // Fetch player names only in standard mode
+  // Player names in standard mode
   useEffect(() => {
     if (!scorecard || !group) return;
     if (group.gameType === "standard") {
@@ -37,7 +37,6 @@ export default function Scorecard({ user, group, scorecard, setScorecard, setGro
     }
   }, [scorecard, group]);
 
-  // Blur inputs on window focus (iOS fix)
   useEffect(() => {
     const handleFocus = () => {
       document.querySelectorAll("input[type='number']").forEach((i) => i.blur());
@@ -46,7 +45,6 @@ export default function Scorecard({ user, group, scorecard, setScorecard, setGro
     return () => window.removeEventListener("focus", handleFocus);
   }, []);
 
-  // Only render when this user or their team has a column
   const hasOwnColumn = () => {
     if (!scorecard || !user || !group) return false;
     if (group.gameType === "bestball") {
@@ -58,7 +56,6 @@ export default function Scorecard({ user, group, scorecard, setScorecard, setGro
     return <p>Loading scorecard...</p>;
   }
 
-  // Determine columns: team names in bestball, userIds in standard
   const columns =
     group.gameType === "bestball"
       ? [...new Set(group.users.map((u) => u.team).filter(Boolean))]

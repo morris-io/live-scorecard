@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 
-// ✅ POST /api/users — create a new user
+// create a new user
 router.post("/", async (req, res) => {
   try {
     const { name, isTemporary = true } = req.body;
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ✅ POST /api/users/names — get userId → name map
+// userId to name map
 router.post("/names", async (req, res) => {
   try {
     const { userIds } = req.body;

@@ -46,7 +46,7 @@ export default function CreateUser({ setUser, groupFromURL, setGroup }) {
         zIndex: 0
       }}
     >
-      {/* Bottom‐right credit */}
+      {/* Bottom right name */}
       <div
         style={{
           position: "fixed",

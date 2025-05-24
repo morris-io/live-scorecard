@@ -6,7 +6,6 @@ body {
   color: #333;
 }
 
-/* ✅ Prevent iOS input zoom on tap by setting 16px minimum font size */
 input, textarea, select {
   font-size: 16px;
 }
@@ -24,13 +23,12 @@ h2 {
   text-align: center;
 }
 
-/* For centering the name input on the first page */
 .initial-input-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 40vh; /* place it toward lower portion of screen */
+  height: 40vh; 
   gap: 16px;
 }
 
@@ -57,7 +55,6 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
-/* ✅ Only narrow the number inputs (used in scorecard) */
 input[type="number"] {
   width: 50px;
   padding: 6px;
@@ -91,7 +88,6 @@ tfoot {
   font-weight: bold;
 }
 
-/* Smaller width just for the name input on CreateUser page */
 .name-input {
   width: 250px;
 }
@@ -102,50 +98,42 @@ tfoot {
   letter-spacing: 0.5px;
 }
 
-/* scope it*/
 .join-create-container {
-  /* makes all body‐text inside white by default */
   color: #fff;
 }
 
-/* target headings */
 .join-create-container h2,
 .join-create-container h3 {
   color: #fff;
 }
 
-/* inputs & placeholders */
 .join-create-container input {
-  color: #fff;                   /* user‐typed text */
+  color: #fff;  
 }
 .join-create-container input::placeholder {
-  color: rgba(255,255,255,0.6);  /* placeholder text */
+  color: rgba(255,255,255,0.6);  
 }
 
-/* white */
-
 .join-create-container input[type="text"] {
-  /* make the input blend with the green background */
   background-color: transparent;  
   border: 1px solid rgba(255,255,255,0.6);
   /* keep your white text */
   color: #fff;
 }
 
-/* soften the placeholder  */
 .join-create-container input[type="text"]::placeholder {
   color: rgba(255,255,255,0.6);
 }
 
 .join-create-container input[type="text"] {
-  background-color: #ffffff;      /* solid white box */
-  border: 1px solid #ccc;         /* light grey border */
+  background-color: #ffffff;
+  border: 1px solid #ccc;         
   border-radius: 6px;
   padding: 8px;
   font-size: 14px;
-  color: #333333;                 /* dark grey for user‐typed text */
+  color: #333333;
 }
 
 .join-create-container input[type="text"]::placeholder {
-  color: rgba(51, 51, 51, 0.5);    /* 50% opaque grey placeholder */
+  color: rgba(51, 51, 51, 0.5);
 }

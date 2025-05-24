@@ -1,5 +1,5 @@
 
-/* Highlight filled inputs */
+/* Highlight inputs */
 input[type="number"].filled {
     background-color: #006aff5a;
     border-color: #006aff5a;
@@ -22,7 +22,6 @@ input[type="number"].filled {
     animation: fadeScore 0.3s ease-in-out;
   }
   
-  /* Clean table UI */
   table {
     width: 100%;
     border-collapse: separate;
@@ -59,7 +58,6 @@ input[type="number"].filled {
     font-weight: bold;
   }
   
-  /* Inputs: modern clean */
   input[type="number"] {
     padding: 6px 10px;
     border-radius: 8px;
